@@ -27,6 +27,22 @@ def create_table(conn, create_table_sql):
         c.execute(create_table_sql)
     except Error as e:
         print(e)
+def insert_into_player_table(conn, data):
+  sql = ''' INSERT INTO player(username,password) VALUES(?,?) '''
+  cur = conn.cursor()
+  cur.execute(sql, data)
+  conn.commit()
+  return cur.lastrowid
+
+def print_player_table(conn):
+  cur = conn.cursor()
+  cur.execute("SELECT * FROM player")
+  results = cur.fetchall()
+  print("results:")
+  print("_ _ _ _ _ _")
+  for results in results:
+    print(results)
+  print("_ _ _ _ _ _")
 
 def main():
     database = r"rpgsystem.db"
@@ -45,6 +61,16 @@ def main():
     if conn is not None:
         # create projects table
         create_table(conn, sql_create_player_table)
+        p_1 = ('Rick', 'rpg1')
+        insert_into_player_table(conn, p_1)
+        p_1 = ('Nuz', 'rpg1')
+        insert_into_player_table(conn, p_1)
+        p_1 = ('Sara', 'rpg1')
+        insert_into_player_table(conn, p_1)
+        p_1 = ('Andrea', 'rpg1')
+        insert_into_player_table(conn, p_1)
+        print_player_table(conn)
+        
 
     else:
         print("Error! cannot create the database connection.")
