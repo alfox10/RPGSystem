@@ -53,13 +53,12 @@ def player_inventory():
   idx = 0
   for item in res:
     item_d = {}
-
     item_d["description"] = item[0]
     item_d["effect"] = item[1]
     item_d["qt"] = item[2]
     iv_dict[idx] = item_d
     idx +=1
-  iv_dict["size"] = idx
+  iv_dict["size"] = "",idx
   return jsonify(iv_dict)
 
 def run():
