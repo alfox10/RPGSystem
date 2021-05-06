@@ -7,10 +7,9 @@ app = Flask('')
 conn = None
 
 class inventoryClass:
-    def __init__(self):
-        self.description = None
-        self.effect = None
-        self.qt = None
+  description = None
+  effect = None
+  qt = None
 
 @app.route('/')
 def home():
