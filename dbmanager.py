@@ -1,80 +1,64 @@
 import sqlite3
 from sqlite3 import Error
 
-def create_connection(db_file):
+conn = None
+database = r"rpgsystem.db"
+
+def create_connection():
     """ create a database connection to the SQLite database
         specified by db_file
     :param db_file: database file
     :return: Connection object or None
     """
+    global conn
+    global database
     conn = None
     try:
-        conn = sqlite3.connect(db_file)
+        conn = sqlite3.connect(database)
         return conn
     except Error as e:
         print(e)
 
-    return conn
 
-def create_table(conn, create_table_sql):
-    """ create a table from the create_table_sql statement
-    :param conn: Connection object
-    :param create_table_sql: a CREATE TABLE statement
-    :return:
-    """
-    try:
-        c = conn.cursor()
-        c.execute(create_table_sql)
-    except Error as e:
-        print(e)
-def insert_into_player_table(conn, data):
+def return_all_players():
+    global conn
+    if conn is None:
+        create_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM player")
+    return cur.fetchall()
+
+def check_user_credential(data):
+    global conn
+    if conn is None:
+        create_connection()
+    cur = conn.cursor()
+    result = 0;
+    sql = """ SELECT id FROM player WHERE username=? AND password=? """
+    query_res = cur.execute(sql, data).fetchall()
+    for row in query_res:
+        result = row[0]
+    return result
+
+def retrieve_player_stat(p_id):
+    global conn
+    if conn is None:
+        create_connection()
+    cur = conn.cursor()
+    sql = """ SELECT hp, omens, name FROM player_stats WHERE player_id=? """
+    return cur.execute(sql, p_id).fetchall()
+
+""" def insert_into_player_table(conn, data):
   sql = ''' INSERT INTO player(username,password) VALUES(?,?) '''
   cur = conn.cursor()
   cur.execute(sql, data)
   conn.commit()
-  return cur.lastrowid
+  return cur.lastrowid """
 
-def print_player_table(conn):
-  cur = conn.cursor()
-  cur.execute("SELECT * FROM player")
-  results = cur.fetchall()
-  print("results:")
-  print("_ _ _ _ _ _")
-  for results in results:
-    print(results)
-  print("_ _ _ _ _ _")
 
 def main():
-    database = r"rpgsystem.db"
+    print("Welcome to dbManager, call functions to use this")
 
-    sql_create_player_table = """ CREATE TABLE IF NOT EXISTS player (
-                                        id integer  PRIMARY KEY AUTOINCREMENT,
-                                        username text NOT NULL,
-                                        password text NOT NULL
-                                    ); """
-
-
-    # create a database connection
-    conn = create_connection(database)
-
-    # create tables
-    if conn is not None:
-        # create projects table
-        create_table(conn, sql_create_player_table)
-        p_1 = ('Rick', 'rpg1')
-        insert_into_player_table(conn, p_1)
-        p_1 = ('Nuz', 'rpg1')
-        insert_into_player_table(conn, p_1)
-        p_1 = ('Sara', 'rpg1')
-        insert_into_player_table(conn, p_1)
-        p_1 = ('Andrea', 'rpg1')
-        insert_into_player_table(conn, p_1)
-        print_player_table(conn)
-        
-
-    else:
-        print("Error! cannot create the database connection.")
 
 if __name__ == '__main__':
-    print("Init DB")
     main()

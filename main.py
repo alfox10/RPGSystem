@@ -1,51 +1,37 @@
 from flask import Flask
 from threading import Thread
 from flask import jsonify, request
-from dbmanager import create_connection
+import dbmanager
 
 app = Flask('')
 conn = None
 
 @app.route('/')
 def home():
-    return '''<p><h1>RPG System API homepage</h1></p><p><h3>not really usefull</h3></p>'''
+    return '''<p><h1>RPG System API homepage</h1></p><p><h3>Page not really usefull</h3></p>'''
 
 @app.route('/api/v1/player', methods=['GET'])
 def get_players():
-  results = ""
-  global conn
-  if conn is None:
-    db_conn()
-  cur = conn.cursor()
-  cur.execute("SELECT * FROM player")
-  results = cur.fetchall()
+  results = dbmanager.return_all_players()
   return jsonify(results)
 
 @app.route('/api/v1/credentials', methods=['POST'])
 def check_credentials():
   res = {"response" : ""}
-  global conn
-  if conn is None:
-    db_conn()
-  cur = conn.cursor()
   request_data = request.get_json()
-  print(request_data)
   username = request_data['username']
   password = request_data['password']
   data = (username, password)
-  sql = """ SELECT id FROM player WHERE username=? AND password=? """
-  query_res = cur.execute(sql, data).fetchall()
-  if len(query_res) < 1:
-    res["response"] = 0  
-  else:
-      for row in query_res:
-        res["response"] = row[0]
+  res["response"] = dbmanager.check_user_credential(data)
   return jsonify(res)
 
-def db_conn():
-  global conn
-  conn = create_connection('rpgsystem.db')
-
+@app.route('/api/v1/stats', methods=['POST'])
+def player_stats():
+  request_data = request.get_json()
+  p_id = request_data['id']
+  res = dbmanager.retrieve_player_stat(p_id)
+  return jsonify(res)
+  
 def run():
   app.run(host='0.0.0.0',port=8080)
 
