@@ -52,13 +52,14 @@ def player_inventory():
   res = dbmanager.retrieve_player_inventory(p_data)
   idx = 0
   for item in res:
+    idx +=1
     item_d = {}
     item_d["description"] = item[0]
     item_d["effect"] = item[1]
     item_d["qt"] = item[2]
     iv_dict[idx] = item_d
-    idx +=1
-  iv_dict["size"] = "",idx
+    
+  iv_dict[0] = idx
   return jsonify(iv_dict)
 
 def run():
