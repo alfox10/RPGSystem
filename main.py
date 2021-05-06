@@ -43,7 +43,7 @@ def player_inventory():
   request_data = request.get_json()
   p_id = request_data['id']
   p_data = (p_id,)
-  res = dbmanager.retrieve_player_stat(p_data)
+  res = dbmanager.retrieve_player_inventory(p_data)
   return jsonify(res)
 
 def run():
