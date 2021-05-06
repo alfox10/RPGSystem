@@ -31,9 +31,12 @@ def player_stats():
   p_id = request_data['id']
   p_data = (p_id,)
   res = dbmanager.retrieve_player_stat(p_data)
-  print(res)
-  print(type(res))
-  return jsonify(res)
+  pg_dict = {}
+  pg_dict["hp"] = res[0]
+  pg_dict["max_hp"] = res[1]
+  pg_dict["omens"] = res[2]
+  pg_dict["nome"] = res[3]
+  return jsonify(pg_dict)
 
 def run():
   app.run(host='0.0.0.0',port=8080)

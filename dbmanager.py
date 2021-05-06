@@ -45,7 +45,7 @@ def retrieve_player_stat(p_id):
     if conn is None:
         create_connection()
     cur = conn.cursor()
-    sql = """ SELECT hp, omens, name FROM player_stats WHERE player_id=? """
+    sql = """ SELECT hp, max_hp, omens, name FROM player_stats WHERE player_id=? """
     return cur.execute(sql, p_id).fetchall()
 
 """ def insert_into_player_table(conn, data):
