@@ -35,7 +35,7 @@ def player_stats():
   pg_dict["hp"] = res[0][0]
   pg_dict["max_hp"] = res[0][1]
   pg_dict["omens"] = res[0][2]
-  pg_dict["nome"] = res[0][3]
+  pg_dict["name"] = res[0][3]
   return jsonify(pg_dict)
 
 def run():
