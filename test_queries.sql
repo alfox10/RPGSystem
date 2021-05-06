@@ -1,3 +1,4 @@
 -- SQLite
 
-select * from inventory;
+--insert into items (description, effect) VALUES ('','');
+

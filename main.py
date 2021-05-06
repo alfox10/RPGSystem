@@ -38,6 +38,14 @@ def player_stats():
   pg_dict["name"] = res[0][3]
   return jsonify(pg_dict)
 
+@app.route('/api/v1/inventory', methods=['POST'])
+def player_inventory():
+  request_data = request.get_json()
+  p_id = request_data['id']
+  p_data = (p_id,)
+  res = dbmanager.retrieve_player_stat(p_data)
+  return jsonify(res)
+
 def run():
   app.run(host='0.0.0.0',port=8080)
 

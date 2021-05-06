@@ -40,6 +40,14 @@ def check_user_credential(data):
         result = row[0]
     return result
 
+def retrieve_player_inventory(p_id):
+    global conn
+    if conn is None:
+        create_connection()
+    cur = conn.cursor()
+    sql = """ select i.description, i.effect, vv.qt from items i inner join (select v.qt, v.item_id from inventory v where v.player_id=?) as vv on vv.item_id=i.id """
+    return cur.execute(sql, p_id).fetchall()
+
 def retrieve_player_stat(p_id):
     global conn
     if conn is None:

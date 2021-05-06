@@ -1,0 +1,10 @@
+insert into items (description, effect) VALUES ('Ash-grey ring','a finger-width wide. All that passes through is obliterated.');
+insert into items (description, effect) VALUES ('Vile Flute','animates a fetus-sized meat golem in a nearby corpse. HP 5 Morale - No armor Bite d4, immune to Powers.');
+insert into items (description, effect) VALUES ('Famine Spoon','A note explains: one taste from this Famine Spoon means death from slow starvation.');
+insert into items (description, effect) VALUES ('malevolently-accurate mirror','The image of a being in this malevolently-accurate mirror shows only the shameful truth of their soul.');
+insert into items (description, effect) VALUES ('Vampiric phurba','Heals you as it harms your target (d3), After stealing a total of 6 HP, test Presence DR14 or become addicted—you must then test Presence DR12 daily. Fail and you must stab someone with the knife before next sunrise. Or wither to ash and die as the sun rises.');
+insert into items (description, effect) VALUES ('black pearl','If dropped in darkness it rolls towards the nearest exit to day.');
+insert into items (description, effect) VALUES ('torch','This torch burns for an immortal hour. Hold it and live. You can lose limbs and enter negative HP but won’t die unless you drop the torch or it burns out.');
+insert into items (description, effect) VALUES ('Silver bird cage','slays whatever is placed behind its bars, slowly, over one long night. That which is killed reanimates twice as strong, as a raging uncontrollable undead.');
+insert into items (description, effect) VALUES ('Black Crown of the Crippled King','Wearing this crooks your body as you become aware that you and every creature within 100 yards gain +10 to attack rolls but −10 to defence rolls. Rolls that go above 20 count as crits, and below 1 as fumbles. The worn crown can only be removed in the pale light of a full moon.');
+insert into items (description, effect) VALUES ('ancient blindfold','Anyone wearing this ancient blindfold becomes invisible to those who breathe though the undead attack them obsessively and nearby corpses awaken in moaning, unholy wrath.');
