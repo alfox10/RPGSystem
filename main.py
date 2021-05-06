@@ -58,7 +58,7 @@ def player_inventory():
     inv_class.qt = item[2]
     iv_dict[idx] = inv_class
     idx +=1
-  return jsonify(res)
+  return jsonify(iv_dict)
 
 def run():
   app.run(host='0.0.0.0',port=8080)
