@@ -48,7 +48,7 @@ def player_inventory():
   request_data = request.get_json()
   p_id = request_data['id']
   p_data = (p_id,)
-  iv_dict = {}
+  iv_dict = []
   res = dbmanager.retrieve_player_inventory(p_data)
   idx = 0
   for item in res:
@@ -57,9 +57,7 @@ def player_inventory():
     item_d["description"] = item[0]
     item_d["effect"] = item[1]
     item_d["qt"] = item[2]
-    iv_dict[idx] = item_d
-    
-  iv_dict[0] = idx
+    iv_dict.append(item_d)
   return jsonify(iv_dict)
 
 def run():
