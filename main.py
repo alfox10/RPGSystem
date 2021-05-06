@@ -58,8 +58,7 @@ def player_inventory():
     item_d["effect"] = item[1]
     item_d["qt"] = item[2]
     iv_dict.append(item_d)
-  res_dict ={"itemFormatList": iv_dict}
-  return jsonify(res_dict)
+  return jsonify(iv_dict)
 
 def run():
   app.run(host='0.0.0.0',port=8080)
