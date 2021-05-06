@@ -31,6 +31,8 @@ def player_stats():
   p_id = request_data['id']
   p_data = (p_id,)
   res = dbmanager.retrieve_player_stat(p_data)
+  print(res)
+  print(type(res))
   return jsonify(res)
 
 def run():
