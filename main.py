@@ -59,6 +59,7 @@ def player_inventory():
     item_d["qt"] = item[2]
     iv_dict[idx] = item_d
     idx +=1
+  iv_dict["size"] = idx
   return jsonify(iv_dict)
 
 def run():
