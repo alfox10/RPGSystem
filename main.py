@@ -6,6 +6,12 @@ import dbmanager
 app = Flask('')
 conn = None
 
+class inventoryClass:
+    def __init__(self):
+        self.description = None
+        self.effect = None
+        self.qt = None
+
 @app.route('/')
 def home():
     return '''<p><h1>RPG System API homepage</h1></p><p><h3>Page not really usefull</h3></p>'''
@@ -43,7 +49,16 @@ def player_inventory():
   request_data = request.get_json()
   p_id = request_data['id']
   p_data = (p_id,)
+  iv_dict = {}
   res = dbmanager.retrieve_player_inventory(p_data)
+  idx = 0
+  for item in res:
+    inv_class = invetoryClass()
+    inv_class.description = item[0]
+    inv_class.effect = item[1]
+    inv_class.qt = item[2]
+    iv_dict[idx] = inv_class
+    idx +=1
   return jsonify(res)
 
 def run():
@@ -52,6 +67,7 @@ def run():
 def keep_alive():
     t = Thread(target=run)
     t.start()
+
 	
 if __name__ == '__main__':
     print("Starting Web Server")
