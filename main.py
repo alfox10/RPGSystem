@@ -52,7 +52,7 @@ def player_inventory():
   res = dbmanager.retrieve_player_inventory(p_data)
   idx = 0
   for item in res:
-    inv_class = invetoryClass()
+    inv_class = inventoryClass()
     inv_class.description = item[0]
     inv_class.effect = item[1]
     inv_class.qt = item[2]
