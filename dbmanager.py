@@ -14,7 +14,7 @@ def create_connection():
     global database
     conn = None
     try:
-        conn = sqlite3.connect(database)
+        conn = sqlite3.connect(database, check_same_thread=False)
         return conn
     except Error as e:
         print(e)
