@@ -42,7 +42,7 @@ def player_stats():
   pg_dict["omens"] = res[0][2]
   pg_dict["max_omens"] = res[0][3]
   pg_dict["name"] = res[0][4]
-  pg_dict["class"] = res[0][5]
+  pg_dict["pg_class"] = res[0][5]
   pg_dict["class_type"] = res[0][6]
   pg_dict["level"] = res[0][7]
   pg_dict["exp"] = res[0][8]
