@@ -63,6 +63,7 @@ def player_inventory():
     item_d["effect"] = item[1]
     item_d["qt"] = item[2]
     item_d["icon"] = item[3]
+    item_d["is_equipped"] = item[4]
     iv_dict.append(item_d)
   res_dict ={"itemFormatList": iv_dict}
   return jsonify(res_dict)

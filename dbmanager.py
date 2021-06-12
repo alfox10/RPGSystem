@@ -45,7 +45,7 @@ def retrieve_player_inventory(p_id):
     if conn is None:
         create_connection()
     cur = conn.cursor()
-    sql = """ select i.description, i.effect, vv.qt, i.icon from items i inner join (select v.qt, v.item_id from inventory v where v.player_id=?) as vv on vv.item_id=i.id """
+    sql = """ select i.description, i.effect, vv.qt, i.icon, vv.is_equipped from items i inner join (select v.qt, v.is_equipped, v.item_id from inventory v where v.player_id=?) as vv on vv.item_id=i.id """
     return cur.execute(sql, p_id).fetchall()
 
 def retrieve_player_stat(p_id):
