@@ -35,8 +35,13 @@ def get_attributes():
   request_data = request.get_json()
   p_id = request_data['id']
   p_data = (p_id,)
+  pg_dict = {}
   res = dbmanager.retrieve_attributes(p_data)
-  return jsonify(res)
+  pg_dict["agility"] = res[0][0]
+  pg_dict["presence"] = res[0][1]
+  pg_dict["strength"] = res[0][2]
+  pg_dict["toughness"] = res[0][3]
+  return jsonify(pg_dict)
 
 
 @app.route('/api/v1/stats', methods=['POST'])
