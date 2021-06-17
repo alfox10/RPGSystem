@@ -68,7 +68,7 @@ def retrieve_attributes(p_data):
     if conn is None:
         create_connection()
     cur = conn.cursor()
-    sql = """ SELECT agility,presence,strenght, toughness FROM MorkBorg_attrs WHERE player_id=? """
+    sql = """ SELECT agility,presence,strength, toughness FROM MorkBorg_attrs WHERE player_id=? """
     return cur.execute(sql, p_data).fetchall()
 
 def main():
