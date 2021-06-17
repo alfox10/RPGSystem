@@ -35,8 +35,7 @@ def get_attributes():
   request_data = request.get_json()
   p_id = request_data['id']
   table = request_data['game']
-  p_data = (table,p_id)
-  res = dbmanager.retrieve_attributes(p_data)
+  res = dbmanager.retrieve_attributes(table,p_id)
   return res
 
 
