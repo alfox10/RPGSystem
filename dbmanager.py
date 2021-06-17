@@ -63,6 +63,13 @@ def retrieve_player_stat(p_id):
   conn.commit()
   return cur.lastrowid """
 
+def retrieve_attributes(p_id,table):
+    global conn
+    if conn is None:
+        create_connection()
+    cur = conn.cursor()
+    sql = """ SELECT agility,presence,strenght, toughness FROM ? WHERE player_id=? """
+    return cur.execute(sql, table, p_id).fetchall()
 
 def main():
     print("Welcome to dbManager, call functions to use this")
