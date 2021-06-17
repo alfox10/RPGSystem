@@ -30,12 +30,12 @@ def check_credentials():
   res["response"] = dbmanager.check_user_credential(data)
   return jsonify(res)
 
-@app.route('/api/v1/attributes', methods=['POST'])
+@app.route('/api/v1/mork_attributes', methods=['POST'])
 def get_attributes():
   request_data = request.get_json()
   p_id = request_data['id']
-  table = request_data['game']
-  res = dbmanager.retrieve_attributes(table,p_id)
+  p_data = (p_id,)
+  res = dbmanager.retrieve_attributes(p_data)
   return res
 
 
