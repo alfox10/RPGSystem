@@ -36,7 +36,7 @@ def get_attributes():
   p_id = request_data['id']
   p_data = (p_id,)
   res = dbmanager.retrieve_attributes(p_data)
-  return res
+  return jsonify(res)
 
 
 @app.route('/api/v1/stats', methods=['POST'])
