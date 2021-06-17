@@ -69,7 +69,7 @@ def retrieve_attributes(table,p_id):
         create_connection()
     cur = conn.cursor()
     sql = """ SELECT agility,presence,strenght, toughness FROM """,table,""" WHERE player_id=? """
-    return cur.execute(sql, p_id).fetchall()
+    return cur.execute(sql, str(p_id)).fetchall()
 
 def main():
     print("Welcome to dbManager, call functions to use this")
